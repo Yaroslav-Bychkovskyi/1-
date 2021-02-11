@@ -1,6 +1,6 @@
 create table contact
 (
-    id         serial       not null,
+    id         bigserial       not null,
     first_name varchar(60) not null,
     last_name  varchar(40) not null,
     birth_date date,
@@ -17,7 +17,7 @@ create table hobby
 
 create table contact_tel_detail
 (
-    id         serial       not null ,
+    id         bigserial       not null ,
     contact_id int not null ,
     tel_type   varchar(20) not null,
     tel_number varchar(20) not null,
