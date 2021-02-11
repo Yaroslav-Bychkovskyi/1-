@@ -2,12 +2,7 @@ package com.github.ybychkovskyi.springstart;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -43,26 +38,45 @@ public class ContactTelDetail implements Serializable {
     return this.version;
   }
 
-  public void setVersion(int version){
+  public void setVersion(int version) {
     this.version = version;
   }
 
   @Column(name = "TEL_TYPE")
-  public String getTelType(){
+  public String getTelType() {
     return this.telType;
   }
 
-  public void setTelType(String telType){
+  public void setTelType(String telType) {
     this.telType = telType;
   }
 
   @Column(name = "TEL_NUMBER")
-  public String getTelNumber(){
+  public String getTelNumber() {
     return this.telNumber;
   }
 
-  public void setTelNumber(String telNumber){
+  public void setTelNumber(String telNumber) {
     this.telNumber = telNumber;
+  }
+
+
+  private Contact contact;
+
+  @ManyToOne
+  @JoinColumn(name = "CONTACT_ID")
+  public Contact getContact() {
+    return this.contact;
+  }
+
+  public void setContact(Contact contact) {
+    this.contact = contact;
+  }
+
+  public String toString() {
+    return "Contact Tel Detail - Id: " + id + ", Contact id: "
+      + getContact().getId() + ", Type: "
+      + telType + ", Number: " + telNumber;
   }
 
 }

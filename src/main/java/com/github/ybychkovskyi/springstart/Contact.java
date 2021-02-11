@@ -1,21 +1,14 @@
 package com.github.ybychkovskyi.springstart;
 
 
-
-
 import static javax.persistence.GenerationType.IDENTITY;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Version;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -81,7 +74,40 @@ public class Contact implements Serializable {
       + ", Last name: " + lastName + ", Birthday: " + birthDate;
   }
 
+  private Set<ContactTelDetail> contactTelDetails = new HashSet<ContactTelDetail>();
 
+  @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
+  public Set<ContactTelDetail> getContactTelDetails() {
+    return this.contactTelDetails;
+  }
+
+  public void setContactTelDetails(Set<ContactTelDetail> contactTelDetails) {
+    this.contactTelDetails = contactTelDetails;
+  }
+
+  public void addContactDetail(ContactTelDetail contactTelDetail) {
+    contactTelDetail.setContact(this);
+    getContactTelDetails().add(contactTelDetail);
+  }
+
+  public void removeContactTelDetail(ContactTelDetail contactTelDetail) {
+    getContactTelDetails().remove(contactTelDetail);
+  }
+
+  private Set<Hobby> hobbies = new HashSet<Hobby>();
+
+  @ManyToMany
+  @JoinTable(name = "contact_hobby_detail",
+    joinColumns = @JoinColumn(name = "CONTACT_ID"),
+    inverseJoinColumns = @JoinColumn(name = "HOBBY_ID"))
+
+  public Set<Hobby> getHobbies() {
+    return this.hobbies;
+  }
+
+  public void setHobbies(Set<Hobby> hobbies) {
+    this.hobbies = hobbies;
+  }
 }
 
 
