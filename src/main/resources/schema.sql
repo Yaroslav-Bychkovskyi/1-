@@ -1,11 +1,11 @@
 create table contact
 (
-    id         serial       not null,
+    id         int         not null auto_increment,
     first_name varchar(60) not null,
     last_name  varchar(40) not null,
-    birth_date date,
+    birth_date data,
     version    int         not null default 0,
-    unique (first_name, last_name),
+    unique uq_contact_1 (first_name, last_name),
     primary key (id)
 );
 
@@ -17,12 +17,11 @@ create table hobby
 
 create table contact_tel_detail
 (
-    id         serial       not null ,
-    contact_id int not null ,
+    id         int         not null auto_increment,
     tel_type   varchar(20) not null,
     tel_number varchar(20) not null,
     version    int         not null default 0,
-    unique (contact_id, tel_type),
+    unique uq_contact_tel_detail_1(contact_id, tel_type),
     primary key (id),
     constraint fk_contact_tel_detail_1 foreign key (contact_id) references contact (id)
 );

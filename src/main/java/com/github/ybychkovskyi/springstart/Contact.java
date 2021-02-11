@@ -11,10 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import java.io.Serializable;
+import java.time.temporal.Temporal;
 import java.util.Date;
 
 
@@ -29,7 +29,7 @@ public class Contact implements Serializable {
 
   @Id
   @GeneratedValue(strategy = IDENTITY)
-  @Column(name = "id")
+  @Column(name = "ID")
   public Long getId() {
     return this.id;
   }
@@ -39,7 +39,7 @@ public class Contact implements Serializable {
   }
 
   @Version
-  @Column(name = "version")
+  @Column(name = "VERSION")
   public int getVersion() {
     return this.version;
   }
