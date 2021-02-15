@@ -18,7 +18,7 @@ create table hobby
 create table contact_tel_detail
 (
     id         bigserial       not null ,
-    contact_id int not null ,
+    contact_id bigint not null ,
     tel_type   varchar(20) not null,
     tel_number varchar(20) not null,
     version    int         not null default 0,
@@ -29,7 +29,7 @@ create table contact_tel_detail
 
 create table contact_hobby_detail
 (
-    contact_id int         not null,
+    contact_id bigint         not null,
     hobby_id   varchar(20) not null,
     primary key (contact_id, hobby_id),
     constraint fk_contact_hobby_detail_1 foreign key (contact_id)
