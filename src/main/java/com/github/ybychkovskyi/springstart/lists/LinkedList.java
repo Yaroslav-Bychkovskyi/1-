@@ -1,5 +1,7 @@
 package com.github.ybychkovskyi.springstart.lists;
 
+import java.util.Iterator;
+
 public class LinkedList<T> implements List<T> {
 
   static class LinList<T> {
@@ -99,5 +101,10 @@ public class LinkedList<T> implements List<T> {
   @Override
   public boolean isEmpty() {
     return false;
+  }
+
+  @Override
+  public Iterator<T> iterator() {
+    return new LinkedListIterator<>();
   }
 }

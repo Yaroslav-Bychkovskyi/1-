@@ -1,5 +1,7 @@
 package com.github.ybychkovskyi.springstart.lists;
 
+import java.util.Iterator;
+
 public class ArrayList<T> implements List<T> {
 
   Object[] array;
@@ -69,5 +71,10 @@ public class ArrayList<T> implements List<T> {
   @Override
   public boolean isEmpty() {
     return i == 0;
+  }
+
+  @Override
+  public Iterator<T> iterator() {
+    return null;
   }
 }
