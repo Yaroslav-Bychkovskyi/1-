@@ -105,6 +105,7 @@ public class LinkedList<T> implements List<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return new LinkedListIterator<>();
+    // return new LinkedListIterator<>();
+    return null ;
   }
 }
